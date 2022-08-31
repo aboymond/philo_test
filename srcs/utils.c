@@ -6,7 +6,7 @@
 /*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:54:23 by piow00            #+#    #+#             */
-/*   Updated: 2022/08/19 17:15:30 by piow00           ###   ########.fr       */
+/*   Updated: 2022/08/30 16:14:47 by piow00           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,35 @@ int	ft_atoi(const char *str)
 }
 
 
-void	*print_all(int num, t_data *a)
+int	print_all(t_data *a, int num, t_philo *philo)
 {
 	//ft_usleep(a, 100);
 	pthread_mutex_lock(&a->print);
-	printf("time = %d ms\tid = %d\t", get_time_now(a), a->id);
-	if (num == 0)
+	a->time = get_time_now(a);
+	if (a->death == 0)
+        printf("time = %d ms\tphilo id = %d\t", a->time, philo->id + 1);
+	printf("time = %d ms\tid = %d\t",a->time, philo->id);
+	if (num == FORK)
 		printf("has taken a fork\t🍴\n");
-	if (num == 1)
+	if (num == EAT)
 		printf("is eating\t\t🍝\n");
-	if (num == 2)
+	if (num == SLEEP)
 		printf("is sleeping\t\t😴\n");
-	if (num == 3)
+	if (num == THINK)
 		printf("is thinking\t\t🤔\n");
-	if (num == 4)
-		printf("is died\t\t\t💀\n");
+	if (num == DIE)
+		printf("is died\t\t\t💀\n"); 
 	pthread_mutex_unlock(&a->print);
 	return (0);
+}
+
+void	detach_philo(t_data *a)
+{
+	int i;
+	i = 0;
+	while (i < a->nb_philo)
+	{
+		pthread_detach(a->p[i].philo);
+		i++;
+	}
 }

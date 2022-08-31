@@ -6,7 +6,7 @@
 #    By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 23:50:24 by piow00            #+#    #+#              #
-#    Updated: 2022/08/19 16:55:17 by piow00           ###   ########.fr        #
+#    Updated: 2022/08/30 13:45:43 by piow00           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 
 NAME		=		philo
 SRCS		=		$(addprefix ./srcs/, main.c check_args.c error.c utils.c \
-						init.c time.c)
+						init.c time.c philo.c)
 
 #---------------------- Objects -----------------------------------------------#
 
