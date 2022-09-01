@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:48:46 by piow00            #+#    #+#             */
-/*   Updated: 2022/08/30 20:39:04 by piow00           ###   ########.fr       */
+/*   Updated: 2022/08/31 19:55:03 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 #define	RD	\033[1;31m
 #define	GN	\033[1;32m
 #define	ED	\033[0m
-#define FORK	0
+#define FORK_G	-1
+#define FORK_D	0
 #define EAT		1
 #define SLEEP	2
 #define THINK	3
@@ -44,18 +45,19 @@ typedef struct s_data
 {
 	pthread_mutex_t		*fork;
 	pthread_mutex_t		print;
+	pthread_mutex_t		check;
+	pthread_t			checker;
 	
 	int					nb;\
-	int					checker;
 	int					nb_philo;
 	int					ti_eat;
 	int					ti_die;
 	int					ti_sleep;
 	int					think;
 	long				start;
-	long				now;
+	size_t				now;
 	int					death;
-	int					time;
+	long				time;
 	t_philo				*p;
 }	t_data;
 
@@ -78,6 +80,7 @@ int		eat(t_data *a, t_philo *philo);
 void	*routine(void *arg);
 void	detach_philo(t_data *a);
 int		forks(t_data *a, t_philo *philo);
-int    philo(t_data *a);
+int		philo(t_data *a);
+void	*check(void *arg);
 
 #endif

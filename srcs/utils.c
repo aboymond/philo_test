@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 15:54:23 by piow00            #+#    #+#             */
-/*   Updated: 2022/08/30 16:14:47 by piow00           ###   ########.fr       */
+/*   Updated: 2022/09/01 16:24:30 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ int	ft_atoi(const char *str)
 	return (negat * res);
 }
 
-
 int	print_all(t_data *a, int num, t_philo *philo)
 {
-	//ft_usleep(a, 100);
 	pthread_mutex_lock(&a->print);
 	a->time = get_time_now(a);
 	if (a->death == 0)
-        printf("time = %d ms\tphilo id = %d\t", a->time, philo->id + 1);
-	printf("time = %d ms\tid = %d\t",a->time, philo->id);
-	if (num == FORK)
-		printf("has taken a fork\t🍴\n");
+		printf("time = %ld ms\tphilo id = %d\t", a->time, philo->id + 1);
+	printf("time = %ld ms\tid = %d\t", a->time, philo->id + 1);
+	if (num == FORK_G)
+		printf("has taken a fork left\t🍴\n");
+	if (num == FORK_D)
+		printf("has taken a fork right\t🍴\n");
 	if (num == EAT)
 		printf("is eating\t\t🍝\n");
 	if (num == SLEEP)
@@ -63,14 +63,18 @@ int	print_all(t_data *a, int num, t_philo *philo)
 	if (num == THINK)
 		printf("is thinking\t\t🤔\n");
 	if (num == DIE)
-		printf("is died\t\t\t💀\n"); 
+	{
+		printf("is died\t\t\t💀\n");
+		exit (0);
+	}
 	pthread_mutex_unlock(&a->print);
 	return (0);
 }
 
 void	detach_philo(t_data *a)
 {
-	int i;
+	int	i;
+
 	i = 0;
 	while (i < a->nb_philo)
 	{

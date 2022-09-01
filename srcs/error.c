@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 13:00:14 by piow00            #+#    #+#             */
-/*   Updated: 2022/07/15 14:31:13 by piow00           ###   ########.fr       */
+/*   Updated: 2022/08/31 17:24:45 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void e_error()
+void	e_error(void)
 {
 	exit(EXIT_SUCCESS);
 }
