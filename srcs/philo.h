@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:48:46 by piow00            #+#    #+#             */
-/*   Updated: 2022/08/31 19:55:03 by aboymond         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:51:44 by piow00           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,12 @@ typedef struct s_data
 	pthread_mutex_t		check;
 	pthread_t			checker;
 	
-	int					nb;\
+	int					nb;
 	int					nb_philo;
 	int					ti_eat;
 	int					ti_die;
 	int					ti_sleep;
+	int					nb_meal_arg;
 	int					think;
 	long				start;
 	size_t				now;

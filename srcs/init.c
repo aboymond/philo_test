@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
+/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:17:12 by piow00            #+#    #+#             */
-/*   Updated: 2022/09/01 16:09:58 by aboymond         ###   ########.fr       */
+/*   Updated: 2022/09/02 11:57:30 by piow00           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ int	init_base(t_data *a, char **argv)
 {
 	a->start = 0;
 	get_time_start(a);
+	a->death = 0;
 	a->nb_philo = ft_atoi(argv[1]);
 	a->ti_die = ft_atoi(argv[2]);
 	a->ti_eat = ft_atoi(argv[3]);
 	a->ti_sleep = ft_atoi(argv[4]);
+	a->nb_meal_arg = ft_atoi(argv[5]);
 	a->now = 0;
-	//a->fork = malloc(sizeof(t_data) * a->nb_philo);
-	//a = malloc(sizeof(t_data));
 	return (0);
 }
 
