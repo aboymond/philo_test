@@ -6,7 +6,7 @@
 /*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:44:30 by piow00            #+#    #+#             */
-/*   Updated: 2022/08/31 17:24:17 by aboymond         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:32:27 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@ int	main(int argc, char **argv)
 {
 	t_data	a;
 
-	(void)argv;
 	if (check_args(argc) == -1)
-		e_error();
-	init_base(&a, argv);
+		return (0);
+	if (init_base(&a, argv, argc) == 1)
+		return (printf("Error init !\n"));
 	init_mutex(&a);
 	init_philo(&a);
 	philo(&a);
+	return (0);
 }

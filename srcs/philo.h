@@ -3,33 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 12:48:46 by piow00            #+#    #+#             */
-/*   Updated: 2022/09/02 11:51:44 by piow00           ###   ########.fr       */
+/*   Updated: 2022/09/05 12:45:19 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# ifndef PHILO_H
+#ifndef PHILO_H
 # define PHILO_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include <pthread.h>
-#include <limits.h>
-#include <sys/time.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <string.h>
+# include <pthread.h>
+# include <limits.h>
+# include <sys/time.h>
 
-#define	RD	\033[1;31m
-#define	GN	\033[1;32m
-#define	ED	\033[0m
-#define FORK_G	-1
-#define FORK_D	0
-#define EAT		1
-#define SLEEP	2
-#define THINK	3
-#define DIE		4
+# define RD	"\033[1;31m"
+# define GN	"\033[1;32m"
+# define ED	"\033[0m"
+# define FORK_G	-1
+# define FORK_D	0
+# define EAT		1
+# define SLEEP	2
+# define THINK	3
+# define DIE		4
 
 typedef struct s_philo
 {
@@ -38,7 +38,6 @@ typedef struct s_philo
 	int					nb_meal;
 	long				last_meal;
 	struct s_data		*data;
-	
 }	t_philo;
 
 typedef struct s_data
@@ -47,7 +46,7 @@ typedef struct s_data
 	pthread_mutex_t		print;
 	pthread_mutex_t		check;
 	pthread_t			checker;
-	
+	int					finish;
 	int					nb;
 	int					nb_philo;
 	int					ti_eat;
@@ -62,20 +61,18 @@ typedef struct s_data
 	t_philo				*p;
 }	t_data;
 
-
-
 int		check_args(int argc);
 int		compt_philo_time(char **argv);
 int		ft_atoi(const char *str);
 int		ft_isdigit(int c);
 int		print_all(t_data *a, int num, t_philo *philo);
 int		init_mutex(t_data *a);
-void 	get_time_start(t_data *data);
-int 	get_time_now(t_data *data);
-int     init_philo(t_data *a);
-int    init_base(t_data *a, char **argv);
+void	get_time_start(t_data *data);
+int		get_time_now(t_data *data);
+int		init_philo(t_data *a);
+int		init_base(t_data *a, char **argv, int argc);
 void	ft_usleep(t_data *a, long time);
-void	e_error();
+int		e_exit(int nb);
 int		philo_sleep(t_data *a, t_philo *philo);
 int		eat(t_data *a, t_philo *philo);
 void	*routine(void *arg);

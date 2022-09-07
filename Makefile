@@ -6,14 +6,14 @@
 #    By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/12 23:50:24 by piow00            #+#    #+#              #
-#    Updated: 2022/08/31 17:56:05 by aboymond         ###   ########.fr        #
+#    Updated: 2022/09/05 12:35:46 by aboymond         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #---------------------- Sources ----------------------------------------------#
 
 NAME		=		philo
-SRCS		=		$(addprefix ./srcs/, main.c check_args.c error.c utils.c \
+SRCS		=		$(addprefix ./srcs/, main.c check_args.c utils.c \
 						init.c time.c philo.c)
 
 #---------------------- Objects -----------------------------------------------#

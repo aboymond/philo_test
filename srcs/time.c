@@ -6,7 +6,7 @@
 /*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:56:11 by piow00            #+#    #+#             */
-/*   Updated: 2022/09/01 16:24:42 by aboymond         ###   ########.fr       */
+/*   Updated: 2022/09/05 12:12:34 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_usleep(t_data *a, long time)
 	long	i;
 
 	i = get_time_now(a);
-	while (!a->death)
+	while (!a->finish)
 	{
 		if (get_time_now(a) - i >= time)
 			break ;

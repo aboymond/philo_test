@@ -3,26 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: piow00 <piow00@student.42.fr>              +#+  +:+       +#+        */
+/*   By: aboymond <aboymond@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 16:17:12 by piow00            #+#    #+#             */
-/*   Updated: 2022/09/02 11:57:30 by piow00           ###   ########.fr       */
+/*   Updated: 2022/09/05 12:37:50 by aboymond         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	init_base(t_data *a, char **argv)
+int	init_base(t_data *a, char **argv, int argc)
 {
 	a->start = 0;
+	a->finish = 0;
 	get_time_start(a);
-	a->death = 0;
 	a->nb_philo = ft_atoi(argv[1]);
 	a->ti_die = ft_atoi(argv[2]);
 	a->ti_eat = ft_atoi(argv[3]);
 	a->ti_sleep = ft_atoi(argv[4]);
-	a->nb_meal_arg = ft_atoi(argv[5]);
+	if (argc == 6)
+		a->nb_meal_arg = ft_atoi(argv[5]);
+	else
+		a->nb_meal_arg = -1;
 	a->now = 0;
+	if (a->nb_philo < 1 || a->ti_die < 0 || a->ti_eat < 0 || a->ti_sleep < 0
+		|| (a->nb_meal_arg < 1 && argc == 6))
+		return (1);
 	return (0);
 }
 
@@ -57,8 +63,8 @@ int	philo(t_data *a)
 	while (++i < a->nb_philo)
 		pthread_join(a->p[i].philo, NULL);
 	pthread_join(a->checker, NULL);
-	// if (end(a))
-	//     return (1);
+	free(a->p);
+	free(a->fork);
 	return (0);
 }
 
